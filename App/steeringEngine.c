@@ -32,23 +32,23 @@ void Sengine_setAngle(u8 num, float Angle, ServoType type)
 	switch (num)
 	{
 	case 1:
-		TIM_SetCompare1(TIM4, pulseWidth);
+		TIM_SetCompare1(TIM9, pulseWidth);
 		break;
 	case 2:
-		TIM_SetCompare2(TIM4, pulseWidth);
+		TIM_SetCompare2(TIM9, pulseWidth);
 		break;
 	case 3:
-		TIM_SetCompare3(TIM4, pulseWidth);
+		TIM_SetCompare1(TIM10, pulseWidth);
 		break;
 	case 4:
-		TIM_SetCompare4(TIM4, pulseWidth);
+		TIM_SetCompare1(TIM11, pulseWidth);
 		break;
 
 	case 5:
-		TIM_SetCompare1(TIM5, pulseWidth);
+		TIM_SetCompare1(TIM12, pulseWidth);
 		break;
 	case 6:
-		TIM_SetCompare2(TIM5, pulseWidth);
+		TIM_SetCompare2(TIM12, pulseWidth);
 		break;
 	default:
 		break;
@@ -61,6 +61,8 @@ void Sengine_setAngle(u8 num, float Angle, ServoType type)
  ****************************************************************************************/
 void Sengine_Init(void)
 {
-	Sengine_PWM_TIM4_Init(20000 - 1, 84 - 1); // ÆµÂÊ=84M/((20000)*(84))=50HZ
-	Sengine_PWM_TIM5_Init(20000 - 1, 84 - 1); // ÆµÂÊ=84M/((20000)*(84))=50HZ
+	Sengine_PWM_TIM9_Init(20000 - 1, 84 - 1); // ÆµÂÊ=84M/((20000)*(84))=50HZ
+	Sengine_PWM_TIM10_Init(20000 - 1, 84 - 1);
+	Sengine_PWM_TIM11_Init(20000 - 1, 84 - 1);
+	Sengine_PWM_TIM12_Init(20000 - 1, 84 - 1);
 }
