@@ -1,0 +1,33 @@
+{
+  "clangd.arguments": [
+    "--compile-commands-dir=e:\\Projectfilestorage\\Keil5\\AHrobot\\out\\AHrobotDrive\\Target_1"
+  ],
+  "cmake.ignoreCMakeListsMissing": true,
+  "files.associations": {
+    "system.h": "c",
+    "string.h": "c",
+    "semphr.h": "c",
+    "event_groups.h": "c",
+    "motor.h": "c",
+    "encodemotor.h": "c",
+    "stepmotor.h": "c",
+    "steerengine.h": "c",
+    "queue.h": "c",
+    "encoder.h": "c",
+    "encodingmotor.h": "c",
+    "steppingmotor.h": "c",
+    "steeringengine.h": "c",
+    "bluetooth_control.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled",
+  "clangd.detectExtensionConflicts": true,
+  "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+  "editor.formatOnSaveMode": "modifications",
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.suggest.showSnippets": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  // "C_Cpp.intelliSenseEngine": "enabled",
+
+}

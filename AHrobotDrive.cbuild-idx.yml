@@ -1,0 +1,15 @@
+build-idx:
+  generated-by: csolution version 2.6.0
+  csolution: AHrobotDrive.csolution.yml
+  tmpdir: tmp
+  cprojects:
+    - cproject: AHrobotDrive.cproject.yml
+  cbuilds:
+    - cbuild: AHrobotDrive+Target_1.cbuild.yml
+      project: AHrobotDrive
+      configuration: +Target_1
+      messages:
+        info:
+          - AHrobotDrive.cbuild-set.yml - file is already up-to-date
+          - AHrobotDrive.cbuild-pack.yml - file is already up-to-date
+          - AHrobotDrive+Target_1.cbuild.yml - file is already up-to-date

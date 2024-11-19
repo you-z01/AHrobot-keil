@@ -1,0 +1,1 @@
+cmd='C:/Users/z/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake.exe;-G;Ninja;-S;<SOURCE_DIR>;-B;<BINARY_DIR>;-DSOLUTION_ROOT=E:/Projectfilestorage/Keil5/AHrobot;-DCMSIS_PACK_ROOT=F:/Keil5/Packs;-DCMSIS_COMPILER_ROOT=C:/Users/z/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.6.1/etc'

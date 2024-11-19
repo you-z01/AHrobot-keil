@@ -1,0 +1,201 @@
+build:
+  generated-by: csolution version 2.6.0
+  solution: AHrobotDrive.csolution.yml
+  project: AHrobotDrive.cproject.yml
+  context: AHrobotDrive+Target_1
+  compiler: AC6
+  device: STMicroelectronics::STM32F407ZGTx
+  device-pack: Keil::STM32F4xx_DFP@3.0.0
+  processor:
+    endian: little
+    fpu: sp
+    core: Cortex-M4
+  packs:
+    - pack: Keil::STM32F4xx_DFP@3.0.0
+      path: ${CMSIS_PACK_ROOT}/Keil/STM32F4xx_DFP/3.0.0
+  optimize: debug
+  debug: on
+  misc:
+    C:
+      - -std=c11
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    CPP:
+      - -xc++
+      - -std=c++11
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    Link:
+      - --library_type=microlib
+      - --map
+      - --load_addr_map_info
+      - --xref
+      - --callgraph
+      - --symbols
+      - --info sizes
+      - --info totals
+      - --info unused
+      - --info veneers
+      - --strict
+      - --summary_stderr
+      - --info summarysizes
+  define:
+    - STM32F40_41xxx
+    - USE_STDPERIPH_DRIVER
+    - __MICROLIB
+    - STM32F407xx
+  define-asm:
+    - __MICROLIB
+    - STM32F407xx
+  add-path:
+    - User
+    - Libraries/CMSIS
+    - Libraries/STM32F4xx_StdPeriph_Driver/inc
+    - FreeRTOS/portable/RVDS/ARM_CM4F
+    - FreeRTOS/include
+    - Public
+    - Peripheral_Driver
+    - App
+    - Task
+  output-dirs:
+    intdir: tmp
+    outdir: out/AHrobotDrive/Target_1
+    rtedir: RTE
+  output:
+    - type: elf
+      file: AHrobotDrive.axf
+  linker:
+    script: AHrobotDrive_Target_1.sct
+  groups:
+    - group: Startup
+      files:
+        - file: Libraries/CMSIS/startup_stm32f40_41xxx.s
+          category: sourceAsm
+          misc:
+            ASM:
+              - -masm=auto
+    - group: StdPeriph_Driver
+      files:
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/misc.c
+          category: sourceC
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c
+          category: sourceC
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c
+          category: sourceC
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_i2c.c
+          category: sourceC
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c
+          category: sourceC
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.c
+          category: sourceC
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c
+          category: sourceC
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c
+          category: sourceC
+    - group: CMSIS
+      files:
+        - file: Libraries/CMSIS/system_stm32f4xx.c
+          category: sourceC
+    - group: FreeRTOS_core
+      files:
+        - file: FreeRTOS/croutine.c
+          category: sourceC
+        - file: FreeRTOS/event_groups.c
+          category: sourceC
+        - file: FreeRTOS/list.c
+          category: sourceC
+        - file: FreeRTOS/queue.c
+          category: sourceC
+        - file: FreeRTOS/tasks.c
+          category: sourceC
+        - file: FreeRTOS/timers.c
+          category: sourceC
+    - group: FreeRTOS_port
+      files:
+        - file: FreeRTOS/portable/MemMang/heap_4.c
+          category: sourceC
+        - file: FreeRTOS/portable/RVDS/ARM_CM4F/port.c
+          category: sourceC
+    - group: Public
+      files:
+        - file: Public/system.c
+          category: sourceC
+        - file: Public/SysTick.c
+          category: sourceC
+        - file: Public/uart.c
+          category: sourceC
+    - group: Peripheral_Driver
+      files:
+        - file: Peripheral_Driver/led.c
+          category: sourceC
+        - file: Peripheral_Driver/oled.c
+          category: sourceC
+        - file: Peripheral_Driver/usart.c
+          category: sourceC
+        - file: Peripheral_Driver/iic.c
+          category: sourceC
+        - file: Peripheral_Driver/encodeMotor.c
+          category: sourceC
+        - file: Peripheral_Driver/steerEngine.c
+          category: sourceC
+        - file: Peripheral_Driver/stepMotor.c
+          category: sourceC
+    - group: App
+      files:
+        - file: App/encodingMotor.c
+          category: sourceC
+        - file: App/pid.c
+          category: sourceC
+        - file: App/steppingMotor.c
+          category: sourceC
+        - file: App/steeringEngine.c
+          category: sourceC
+    - group: Task
+      files:
+        - file: Task/Bluetooth_control.c
+          category: sourceC
+    - group: User
+      files:
+        - file: User/main.c
+          category: sourceC
+        - file: User/stm32f4xx_it.c
+          category: sourceC
+        - file: readme.txt
+          category: doc
+  constructed-files:
+    - file: RTE/_Target_1/RTE_Components.h
+      category: header
+  licenses:
+    - license: Apache-2.0
+      packs:
+        - pack: Keil::STM32F4xx_DFP@3.0.0

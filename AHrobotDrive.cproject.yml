@@ -1,0 +1,124 @@
+project:
+  packs:
+    - pack: Keil::STM32F4xx_DFP
+  setups:
+    - setup: Options for Target_1
+      processor:
+        fpu: sp
+      add-path:
+        - User
+        - Libraries/CMSIS
+        - Libraries/STM32F4xx_StdPeriph_Driver/inc
+        - FreeRTOS/portable/RVDS/ARM_CM4F
+        - FreeRTOS/include
+        - Public
+        - Peripheral_Driver
+        - App
+        - Task
+      debug: "on"
+      define:
+        - STM32F40_41xxx
+        - USE_STDPERIPH_DRIVER
+        - __MICROLIB
+      define-asm:
+        - __MICROLIB
+      misc:
+        - C:
+            - -std=c11
+          C-CPP:
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -ffunction-sections
+            - -Wno-packed
+            - -Wno-missing-variable-declarations
+            - -Wno-missing-prototypes
+            - -Wno-missing-noreturn
+            - -Wno-sign-conversion
+            - -Wno-nonportable-include-path
+            - -Wno-reserved-id-macro
+            - -Wno-unused-macros
+            - -Wno-documentation-unknown-command
+            - -Wno-documentation
+            - -Wno-license-management
+            - -Wno-parentheses-equality
+          CPP:
+            - -xc++
+            - -std=c++11
+          Link:
+            - --library_type=microlib
+            - --map
+            - --load_addr_map_info
+            - --xref
+            - --callgraph
+            - --symbols
+            - --info sizes
+            - --info totals
+            - --info unused
+            - --info veneers
+            - --strict
+            - --summary_stderr
+            - --info summarysizes
+  linker:
+    - script: AHrobotDrive_Target_1.sct
+  groups:
+    - group: Startup
+      files:
+        - file: Libraries/CMSIS/startup_stm32f40_41xxx.s
+          misc:
+            - ASM:
+                - -masm=auto
+    - group: StdPeriph_Driver
+      files:
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/misc.c
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_i2c.c
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.c
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_usart.c
+        - file: Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_syscfg.c
+    - group: CMSIS
+      files:
+        - file: Libraries/CMSIS/system_stm32f4xx.c
+    - group: FreeRTOS_core
+      files:
+        - file: FreeRTOS/croutine.c
+        - file: FreeRTOS/event_groups.c
+        - file: FreeRTOS/list.c
+        - file: FreeRTOS/queue.c
+        - file: FreeRTOS/tasks.c
+        - file: FreeRTOS/timers.c
+    - group: FreeRTOS_port
+      files:
+        - file: FreeRTOS/portable/MemMang/heap_4.c
+        - file: FreeRTOS/portable/RVDS/ARM_CM4F/port.c
+    - group: Public
+      files:
+        - file: Public/system.c
+        - file: Public/SysTick.c
+        - file: Public/uart.c
+    - group: Peripheral_Driver
+      files:
+        - file: Peripheral_Driver/led.c
+        - file: Peripheral_Driver/oled.c
+        - file: Peripheral_Driver/usart.c
+        - file: Peripheral_Driver/iic.c
+        - file: Peripheral_Driver/encodeMotor.c
+        - file: Peripheral_Driver/steerEngine.c
+        - file: Peripheral_Driver/stepMotor.c
+    - group: App
+      files:
+        - file: App/encodingMotor.c
+        - file: App/pid.c
+        - file: App/steppingMotor.c
+        - file: App/steeringEngine.c
+    - group: Task
+      files:
+        - file: Task/Bluetooth_control.c
+    - group: User
+      files:
+        - file: User/main.c
+        - file: User/stm32f4xx_it.c
+        - file: readme.txt
