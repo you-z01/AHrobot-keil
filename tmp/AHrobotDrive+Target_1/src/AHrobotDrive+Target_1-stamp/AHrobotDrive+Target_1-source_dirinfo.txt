@@ -4,6 +4,6 @@
 
 method=source_dir
 command=
-source_dir=E:/Projectfilestorage/Keil5/AHrobot/tmp/AHrobotDrive+Target_1
+source_dir=E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/AHrobotDrive+Target_1
 work_dir=
 

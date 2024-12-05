@@ -1,11 +1,11 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-set(command "C:/Users/z/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake.exe;-G;Ninja;-S;E:/Projectfilestorage/Keil5/AHrobot/tmp/AHrobotDrive+Target_1;-B;E:/Projectfilestorage/Keil5/AHrobot/tmp/1;-DSOLUTION_ROOT=E:/Projectfilestorage/Keil5/AHrobot;-DCMSIS_PACK_ROOT=F:/Keil5/Packs;-DCMSIS_COMPILER_ROOT=C:/Users/z/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.6.1/etc")
+set(command "C:/Users/z/.vcpkg/artifacts/2139c4c6/tools.kitware.cmake/3.28.4/bin/cmake.exe;-G;Ninja;-S;E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/AHrobotDrive+Target_1;-B;E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/1;-DSOLUTION_ROOT=E:/Projectfilestorage/Keil5/AHrobot-keil;-DCMSIS_PACK_ROOT=F:/Keil5/Packs;-DCMSIS_COMPILER_ROOT=C:/Users/z/.vcpkg/artifacts/2139c4c6/tools.open.cmsis.pack.cmsis.toolbox/2.6.1/etc")
 set(log_merged "")
 set(log_output_on_failure "ON")
-set(stdout_log "E:/Projectfilestorage/Keil5/AHrobot/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-out.log")
-set(stderr_log "E:/Projectfilestorage/Keil5/AHrobot/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-err.log")
+set(stdout_log "E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-out.log")
+set(stderr_log "E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-err.log")
 execute_process(
   COMMAND ${command}
   RESULT_VARIABLE result
@@ -31,7 +31,7 @@ if(result)
   if (${log_merged})
     set(msg "${msg}\nSee also\n  ${stderr_log}")
   else()
-    set(msg "${msg}\nSee also\n  E:/Projectfilestorage/Keil5/AHrobot/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-*.log")
+    set(msg "${msg}\nSee also\n  E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-*.log")
   endif()
   if (${log_output_on_failure})
     message(SEND_ERROR "${msg}")
@@ -50,7 +50,7 @@ if(result)
   endif()
 else()
   if(NOT "Ninja" MATCHES "Ninja")
-    set(msg "AHrobotDrive+Target_1 configure command succeeded.  See also E:/Projectfilestorage/Keil5/AHrobot/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-*.log")
+    set(msg "AHrobotDrive+Target_1 configure command succeeded.  See also E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/AHrobotDrive+Target_1/src/AHrobotDrive+Target_1-stamp/AHrobotDrive+Target_1-configure-*.log")
     message(STATUS "${msg}")
   endif()
 endif()

@@ -1,4 +1,4 @@
-# Install script for directory: E:/Projectfilestorage/Keil5/AHrobot/tmp/AHrobotDrive+Target_1
+# Install script for directory: E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/AHrobotDrive+Target_1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Projectfilestorage/Keil5/AHrobot/tmp/1/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/Projectfilestorage/Keil5/AHrobot-keil/tmp/1/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
