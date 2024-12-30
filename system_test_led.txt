@@ -1,0 +1,350 @@
+#include "system.h"
+
+
+//任务优先级
+#define START_TASK_PRIO		1
+//任务堆栈大小	
+#define START_STK_SIZE 		256  
+//任务句柄
+TaskHandle_t StartTask_Handler;
+//任务函数
+void start_task(void *pvParameters);
+
+//任务优先级
+#define LED1_TASK_PRIO		2
+//任务堆栈大小	
+#define LED1_STK_SIZE 		50  
+//任务句柄
+TaskHandle_t LED1Task_Handler;
+//任务函数
+void led1_task(void *pvParameters);
+
+//任务优先级
+#define LED2_TASK_PRIO		3
+//任务堆栈大小	
+#define LED2_STK_SIZE 		50  
+//任务句柄
+TaskHandle_t LED2Task_Handler;
+//任务函数
+void led2_task(void *pvParameters);
+
+
+/*******************************************************************************
+* 函 数 名         : main
+* 函数功能		   : 主函数
+* 输    入         : 无
+* 输    出         : 无
+*******************************************************************************/
+int main()
+{
+	SysTick_Init(168);
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);//设置系统中断优先级分组4
+	LED_Init();
+	USART1_Init(115200);
+	
+	//创建开始任务
+    xTaskCreate((TaskFunction_t )start_task,            //任务函数
+                (const char*    )"start_task",          //任务名称
+                (uint16_t       )START_STK_SIZE,        //任务堆栈大小
+                (void*          )NULL,                  //传递给任务函数的参数
+                (UBaseType_t    )START_TASK_PRIO,       //任务优先级
+                (TaskHandle_t*  )&StartTask_Handler);   //任务句柄              
+    vTaskStartScheduler();          //开启任务调度
+}
+
+//开始任务任务函数
+void start_task(void *pvParameters)
+{
+    taskENTER_CRITICAL();           //进入临界区
+      
+    //创建LED1任务
+    xTaskCreate((TaskFunction_t )led1_task,     
+                (const char*    )"led1_task",   
+                (uint16_t       )LED1_STK_SIZE, 
+                (void*          )NULL,
+                (UBaseType_t    )LED1_TASK_PRIO,
+                (TaskHandle_t*  )&LED1Task_Handler); 
+								
+		//创建LED2任务
+    xTaskCreate((TaskFunction_t )led2_task,     
+                (const char*    )"led2_task",   
+                (uint16_t       )LED2_STK_SIZE, 
+                (void*          )NULL,
+                (UBaseType_t    )LED2_TASK_PRIO,
+                (TaskHandle_t*  )&LED2Task_Handler); 
+				
+    vTaskDelete(StartTask_Handler); //删除开始任务
+    taskEXIT_CRITICAL();            //退出临界区
+} 
+
+//LED1任务函数
+void led1_task(void *pvParameters)
+{
+	while(1)
+	{
+			led1=0;
+			vTaskDelay(200);
+			led1=1;
+			vTaskDelay(800);
+	}
+}
+
+void led2_task(void *pvParameters)
+{
+	while(1)
+	{
+		led2=0;
+		vTaskDelay(200);
+		led2=1;
+		vTaskDelay(800);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /**************************************************************************
+// 函数功能：增量式PI控制器
+// 入口参数：编码器测量值。此处没有使用M法转换为实际的速度
+// 返回  值：电机PWM
+// 根据增量式离散PID公式:pwm+=Kp[e（k）-e(k-1)]+Ki*e(k)+Kd[e(k)-2e(k-1)+e(k-2)]
+// 		e(k)代表本次偏差 
+// 		e(k-1)代表上一次的偏差  以此类推 
+// 		pwm代表增量输出
+// **************************************************************************/
+// int Incremental_PI_A (float Actual_val)
+// {
+// 	/*计算目标值与实际值的误差*/
+// 	MOTOR_A.err = MOTOR_A.Target_Val - Actual_val;
+	
+// 	/*积分项*/
+// 	MOTOR_A.integral += MOTOR_A.err;
+
+// 	/*PID算法实现*/
+// 	MOTOR_A.output_val = MOTOR_A.Kp * MOTOR_A.err + 
+// 				     	MOTOR_A.Ki * MOTOR_A.integral + 
+// 				     	MOTOR_A.Kd * (MOTOR_A.err - MOTOR_A.err_last);
+
+// 	/*误差传递*/
+// 	MOTOR_A.err_last = MOTOR_A.err;
+
+// 	/*返回当前实际值*/
+// 	return MOTOR_A.output_val;
+// }
+// int Incremental_PI_B (float Actual_val)
+// {
+// 	/*计算目标值与实际值的误差*/
+// 	MOTOR_B.err = MOTOR_B.Target_Val - Actual_val;
+	
+// 	/*积分项*/
+// 	MOTOR_B.integral += MOTOR_B.err;
+
+// 	/*PID算法实现*/
+// 	MOTOR_B.output_val = MOTOR_B.Kp * MOTOR_B.err + 
+// 				     	MOTOR_B.Ki * MOTOR_B.integral + 
+// 				     	MOTOR_B.Kd * (MOTOR_B.err - MOTOR_B.err_last);
+
+// 	/*误差传递*/
+// 	MOTOR_B.err_last = MOTOR_B.err;
+
+// 	/*返回当前实际值*/
+// 	return MOTOR_B.output_val;
+// }
+// int Incremental_PI_C (float Actual_val)
+// {
+// 	/*计算目标值与实际值的误差*/
+// 	MOTOR_C.err = MOTOR_C.Target_Val - Actual_val;
+	
+// 	/*积分项*/
+// 	MOTOR_C.integral += MOTOR_C.err;
+
+// 	/*PID算法实现*/
+// 	MOTOR_C.output_val = MOTOR_C.Kp * MOTOR_C.err + 
+// 				     	MOTOR_C.Ki * MOTOR_C.integral + 
+// 				     	MOTOR_C.Kd * (MOTOR_C.err - MOTOR_C.err_last);
+
+// 	/*误差传递*/
+// 	MOTOR_C.err_last = MOTOR_C.err;
+
+// 	/*返回当前实际值*/
+// 	return MOTOR_C.output_val;
+// }
+// int Incremental_PI_D (float Actual_val)
+// {
+// 	/*计算目标值与实际值的误差*/
+// 	MOTOR_D.err = MOTOR_D.Target_Val - Actual_val;
+	
+// 	/*积分项*/
+// 	MOTOR_D.integral += MOTOR_D.err;
+
+// 	/*PID算法实现*/
+// 	MOTOR_D.output_val = MOTOR_D.Kp * MOTOR_D.err + 
+// 				     	MOTOR_D.Ki * MOTOR_D.integral + 
+// 				     	MOTOR_D.Kd * (MOTOR_D.err - MOTOR_D.err_last);
+
+// 	/*误差传递*/
+// 	MOTOR_D.err_last = MOTOR_D.err;
+
+// 	/*返回当前实际值*/
+// 	return MOTOR_D.output_val;
+// }
+
+// /**************************************************************************
+// 函数功能：读取编码器数值
+// 入口参数：无
+// 返回  值：无
+// **************************************************************************/
+// void Get_Velocity_Form_Encoder(void)
+// {
+// 	MOTOR_A.Encoder_num= Read_Encoder(2); 
+// 	MOTOR_B.Encoder_num= Read_Encoder(3); 
+// 	MOTOR_C.Encoder_num=-Read_Encoder(4); 
+// 	MOTOR_D.Encoder_num=-Read_Encoder(5);
+// 	// float Encoder_A_pr,Encoder_B_pr,Encoder_C_pr,Encoder_D_pr; //用于获取编码器的原始数据 
+// 	// //获取编码器的原始数据
+// 	// Encoder_A_pr= Read_Encoder(2); 
+// 	// Encoder_B_pr= Read_Encoder(3); 
+// 	// Encoder_C_pr=-Read_Encoder(4); 
+// 	// Encoder_D_pr=-Read_Encoder(5);
+	
+// 	// MOTOR_A.Encoder_num= Encoder_A_pr;
+// 	// MOTOR_B.Encoder_num= Encoder_B_pr;
+// 	// MOTOR_C.Encoder_num= Encoder_C_pr;
+// 	// MOTOR_D.Encoder_num= Encoder_D_pr;
+// }
+
+// /**************************************************************************
+// 函数功能：限制PWM值 
+// 入口参数：PID计算后的值，最高值，最低值
+// 返回  值：限幅处理后的
+// **************************************************************************/
+// int Limit_Pwm(int pwm_input,float high,float low)
+// {	
+// 	int pwm_output = 0;
+// 	if(pwm_input>high) 
+// 	{
+// 		pwm_output = high;
+// 	}
+// 	else if(pwm_input<low) 
+// 	{
+// 		pwm_output = low;
+// 	}
+// 	else if((pwm_input>-100)&&(pwm_input<100)) 	//占空比太小可能烧电机，太小则不输出
+// 	{
+// 		pwm_output = 0;
+// 	}
+// 	else
+// 	{
+// 		pwm_output = pwm_input;
+// 	}
+// 	return pwm_output;
+// }
+
+
+
+
+
+
+
+/*
+int flag = 0;
+int32_t speed = 0;
+void encoder_motorControl_task(void *pvParameters)
+{
+	u32 lastWakeTime = getSysTickCnt();
+	int i = 0;
+	
+	while(1)
+	{
+		vTaskDelayUntil(&lastWakeTime, F2T(100));//此任务以100Hz的频率运行（10ms控制一次）
+		receiving_process();
+
+		if(flag==1)
+		{
+			led1=0;
+			led2=1;
+			Get_Velocity_Form_Encoder();
+			printf("MOTOR_A.Encoder_num=%0.2f\r\n",(float)MOTOR_A.Encoder_num);
+			MOTOR_A.PID_PWM = Limit_Pwm((int)Incremental_PI_A(MOTOR_A.Encoder_num), 7000,-7000 );
+			Set_Pwm(MOTOR_A.PID_PWM, 0, 0, 0); 
+			//Set_Pwm(5000, 0, 0, 0);
+			printf("MOTOR_A.PID_PWM=%0.2f\r\n",(float)MOTOR_A.PID_PWM);
+
+			i++;
+			if(i==8)
+			{
+				i=0;
+				speed = (int32_t)MOTOR_A.Encoder_num;
+				set_computer_value(SEND_FACT_CMD, CURVES_CH1, &speed, 1); //发送实际值
+			}
+		}
+		else if(flag==2)
+		{
+			led1=1;
+			led2=0;
+			Set_Pwm(0, 0, 0, 0); 
+		}
+		else
+		{
+			led1=1;
+			led2=1;
+		}
+	}
+}
+*/
+
+
+// if (speed_target == 0)
+	// {
+	// 	switch(num)
+	// 	{
+	// 	case 1:
+	// 		Set_Pwm(0, MOTOR_B.PID_PWM, MOTOR_C.PID_PWM, MOTOR_D.PID_PWM); 
+	// 		break;
+	// 	case 2:
+	// 		Set_Pwm(MOTOR_A.PID_PWM, 0, MOTOR_C.PID_PWM, MOTOR_D.PID_PWM); 
+	// 		break;
+	// 	case 3:
+	// 		Set_Pwm(MOTOR_A.PID_PWM, MOTOR_B.PID_PWM, 0, MOTOR_D.PID_PWM); 
+	// 		break;
+	// 	case 4:
+	// 		Set_Pwm(MOTOR_A.PID_PWM, MOTOR_B.PID_PWM, MOTOR_C.PID_PWM, 0); 
+	// 		break;
+	// 	default:
+	// 		break;
+	// 	}	
+	// }
+	// else
+	// {
+	// 	Set_Pwm(MOTOR_A.PID_PWM, MOTOR_B.PID_PWM, MOTOR_C.PID_PWM, MOTOR_D.PID_PWM); 
+	// }
+
+	// //电机正反转控制
+	// if(motor_a>0)			AIN1=0,		AIN2=1;  //正转
+	// else if(motor_a<0)		AIN1=1,		AIN2=0;  //反转
+	// else if(motor_a==0)		AIN1=0,		AIN2=0;  //停止
+	// TIM_SetCompare4(TIM8,myabs(motor_a));		//电机转速控制	
+
+	// if(motor_b>0)			BIN1=0,		BIN2=1;  //正转
+	// else if(motor_b<0)		BIN1=1,		BIN2=0;  //反转
+	// else if(motor_b==0)		BIN1=0,		BIN2=0;  //停止
+	// TIM_SetCompare3(TIM8,myabs(motor_b));
+
+	// if(motor_c>0)			CIN2=0,		CIN1=1;  //正转 
+	// else if(motor_c<0)		CIN2=1,		CIN1=0;  //反转
+	// else if(motor_c==0)		CIN2=0,		CIN1=0;  //停止
+	// TIM_SetCompare2(TIM8,myabs(motor_c));
+
+	// if(motor_d>0)			DIN2=0,		DIN1=1;  //正转
+	// else if(motor_d<0)		DIN2=1,		DIN1=0;  //反转
+	// else if(motor_d==0)		DIN2=0,		DIN1=0;  //停止
+	// TIM_SetCompare1(TIM8,myabs(motor_d));
