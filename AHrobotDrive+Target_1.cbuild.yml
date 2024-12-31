@@ -152,8 +152,6 @@ build:
           category: sourceC
         - file: Public/SysTick.c
           category: sourceC
-        - file: Public/uart.c
-          category: sourceC
     - group: Peripheral_Driver
       files:
         - file: Peripheral_Driver/led.c

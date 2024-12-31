@@ -6,7 +6,7 @@
  * @FilePath: \AHrobot\App\steeringEngine.c
  */
 #include "steeringEngine.h"
-
+#include "system.h"
 /****************************************************************************************
  * @description: ¶æ»ú¿ØÖÆ
  * @param {u8} num ¶æ»ú±àºÅ (1-6)

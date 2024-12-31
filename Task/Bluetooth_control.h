@@ -1,7 +1,7 @@
 #ifndef __BlUETOOTH_CONTROL_H
 #define __BlUETOOTH_CONTROL_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 void Bluetooth_control_task(void *pvParameters);
 #define Bluetooth_control_TASK_PRIO 4  // 任务优先级

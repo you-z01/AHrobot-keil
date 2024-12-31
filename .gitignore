@@ -2,6 +2,7 @@
 /out/
 /Obj/
 /tmp/
-*/AHrobotDrive.uvguix.z
-*/settings.json
-*/keil-assistant.log
+*AHrobotDrive.uvguix.z
+*settings.json
+*keil-assistant.log
+*uv2csolution.log

@@ -1,12 +1,12 @@
 /**
  * @Author: z
- * @Date: 2024-11-15 
- * @LastEditTime: 2024-11-19 
+ * @Date: 2024-11-15
+ * @LastEditTime: 2024-11-19
  * @Description: 步进电机驱动程序
  * @FilePath: \AHrobot\Peripheral_Driver\stepMotor.c
  */
 #include "stepMotor.h"
-
+#include "steppingMotor.h"
 
 /****************************************************************************************
  * @description: 步进电机方向引脚初始化

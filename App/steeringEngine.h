@@ -8,7 +8,8 @@
 #ifndef __STEERINGENGINE_H
 #define __STEERINGENGINE_H
 
-#include "system.h"
+#include "stm32f4xx.h"
+
 typedef enum
 {
     SERVO_180,

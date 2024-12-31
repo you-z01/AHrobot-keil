@@ -2,7 +2,7 @@
 #ifndef __STEPPINGMOTOR_H
 #define __STEPPINGMOTOR_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 /*--------------步进电机1-------------*/
 #define S_PWM_PORT_1 GPIOE

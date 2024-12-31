@@ -2,7 +2,7 @@
 #ifndef __PID_H
 #define __PID_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 #define PID_ASSISTANT_EN (0) // 1:使用PID调试助手显示波形，0：使用串口直接打印数据
 

@@ -1,7 +1,7 @@
 #ifndef __ENCODEMOTOR_H
 #define __ENCODEMOTOR_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 void Emotor_GPIO_Init(void);                 // 编码电机方向脚初始化
 void Emotor_PWM_TIM8_Init(u16 arr, u16 psc); // 编码器电机PWM初始化

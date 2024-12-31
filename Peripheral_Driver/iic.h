@@ -1,7 +1,7 @@
 #ifndef _iic_H
 #define _iic_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 /*  IIC_SCL时钟端口、引脚定义 */
 #define IIC_SCL_PORT GPIOB

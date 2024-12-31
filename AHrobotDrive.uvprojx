@@ -509,11 +509,6 @@
               <FileType>1</FileType>
               <FilePath>.\Public\SysTick.c</FilePath>
             </File>
-            <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Public\uart.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

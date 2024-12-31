@@ -1,7 +1,7 @@
 #ifndef _SysTick_H
 #define _SysTick_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 void SysTick_Init(u8 SYSCLK);
 void delay_ms(u16 nms);

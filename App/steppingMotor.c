@@ -6,6 +6,7 @@
  * @FilePath: \AHrobot\App\steppingMotor.c
  */
 #include "steppingMotor.h"
+#include "system.h"
 
 // 步进电机的参数结构体
 S_Motor_parameter SMOTOR_1, SMOTOR_2, SMOTOR_3, SMOTOR_4;

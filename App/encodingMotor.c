@@ -6,7 +6,7 @@
  * @FilePath: \AHrobot\App\encodingMotor.c
  */
 #include "encodingMotor.h"
-
+#include "system.h"
 /****************************************************************************************
  * @description: 编码电机驱动初始化
  * @return {*}

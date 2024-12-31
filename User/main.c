@@ -34,14 +34,20 @@ int main()
     Start_motion(4, 1, 1, 500);
     while (1)
     {
-        Sengine_setAngle(1, 90, SERVO_180);
-        delay_ms(1000);
-        Sengine_setAngle(2, 200, SERVO_270);
-        delay_ms(1000);
-        Emotor_control(1, -3000);
-        Emotor_control(2, 3000);
-        Emotor_control(3, 3000);
-        Emotor_control(4, 3000);
+        led1 = 0;
+        delay_ms(300);
+        led1 = 1;
+        led2 = 0;
+        delay_ms(300);
+        led2 = 1;
+        // Sengine_setAngle(1, 90, SERVO_180);
+        // delay_ms(1000);
+        // Sengine_setAngle(2, 200, SERVO_270);
+        // delay_ms(1000);
+        // Emotor_control(1, -3000);
+        // Emotor_control(2, 3000);
+        // Emotor_control(3, 3000);
+        // Emotor_control(4, 3000);
     }
 #endif
 

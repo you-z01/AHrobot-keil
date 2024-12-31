@@ -1,7 +1,7 @@
 #ifndef __ENCODINGMOTOR_H
 #define __ENCODINGMOTOR_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 /*--------------编码电机1-------------*/
 #define E_PWM_PORT_1 GPIOC // 电机1 PWM

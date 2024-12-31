@@ -6,7 +6,7 @@
  * @FilePath: \AHrobot\Peripheral_Driver\usart.c
  */
 #include "usart.h"
-
+#include "system.h"
 u8 Recvl_Buffer[RECEIVE_DATA_SIZE]; // 串口接收数据缓存
 u8 Recvl_Data[3];					// 串口接收数据
 

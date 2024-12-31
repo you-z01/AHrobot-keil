@@ -1,7 +1,7 @@
 #ifndef __STEPMOTOR_H
 #define __STEPMOTOR_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 void Smotor_GPIO_Init(void);                              // 步进电机方向脚初始化
 void Smotor_PWM_TIM1_Init(u16 arr, u16 psc);              // 步进电机PWM初始化

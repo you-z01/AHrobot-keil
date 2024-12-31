@@ -1,7 +1,7 @@
 #ifndef __OLED_H
 #define __OLED_H
 
-#include "system.h"
+#include "stm32f4xx.h"
 #include "oledfont.h" //×Ö¿âÎÄ¼þ
 
 #define OLED_MODE 0

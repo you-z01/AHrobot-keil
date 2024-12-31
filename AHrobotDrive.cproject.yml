@@ -98,7 +98,6 @@ project:
       files:
         - file: Public/system.c
         - file: Public/SysTick.c
-        - file: Public/uart.c
     - group: Peripheral_Driver
       files:
         - file: Peripheral_Driver/led.c

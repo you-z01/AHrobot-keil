@@ -8,7 +8,7 @@
 #define FRAME_TAIL 0X7D     // 帧尾}
 #define RECEIVE_DATA_SIZE 5 // 缓冲区的大小 5
 
-#include "system.h"
+#include "stm32f4xx.h"
 
 void USART1_init(u32 bound);
 void USART1_send(u8 *data, u8 len);
